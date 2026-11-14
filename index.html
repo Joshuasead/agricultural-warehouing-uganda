@@ -127,23 +127,155 @@ footer{background:#123c2a;color:#e9f1e9;padding:36px 6%;margin-top:30px}footer .
      background:#167b3e;color:white;text-decoration:none;
      border-radius:8px;">
     Contact Us to Donate
-  </a>
+  <section id="donate" class="donation-section">
+  <style>
+    .donation-section {
+      background: linear-gradient(135deg, #073b25, #13834c);
+      color: white;
+      padding: 45px 20px;
+      text-align: center;
+      border-radius: 18px;
+      font-family: Arial, sans-serif;
+    }
 
-  <h3>Donate by Mastercard</h3>
+    .donation-section .donate-card {
+      background: white;
+      color: #183b2b;
+      padding: 25px;
+      margin: 20px auto;
+      border-radius: 15px;
+      max-width: 480px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.2);
+    }
+
+    .donation-section button {
+      background: #13834c;
+      color: white;
+      border: none;
+      padding: 13px 20px;
+      margin: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .donation-section button:hover {
+      background: #075c32;
+    }
+
+    .donation-section .wallet {
+      background: #edf5ef;
+      padding: 14px;
+      border-radius: 8px;
+      overflow-wrap: anywhere;
+      font-size: 14px;
+    }
+
+    .donation-section .payment-panel {
+      display: none;
+    }
+
+    .donation-section .payment-panel.active {
+      display: block;
+    }
+  </style>
+
+  <h1>Support Agricultural Warehousing Uganda</h1>
 
   <p>
-    Make a secure card contribution through our
-    approved payment processor.
+    Together, we can improve grain preservation,
+    reduce post-harvest losses and strengthen
+    agricultural communities.
   </p>
 
-  <a href="YOUR_FLUTTERWAVE_PAYMENT_LINK"
-     style="display:inline-block;padding:14px 24px;
-     background:#174a80;color:white;text-decoration:none;
-     border-radius:8px;">
-    Donate by Mastercard
-  </a>
+  <div class="donate-card">
+    <h2>Make a Donation</h2>
+    <p>Choose your preferred contribution method.</p>
+
+    <button onclick="showDonation('mtn')">
+      MTN Mobile Money
+    </button>
+
+    <button onclick="showDonation('usdt')">
+      USDT / Trust Wallet
+    </button>
+
+    <div id="mtn" class="payment-panel">
+      <h3>Donate through MTN</h3>
+      <p>Our donation contact number:</p>
+      <h2>+256 763 951 484</h2>
+
+      <a href="https://wa.me/256763951484?text=Hello%2C%20I%20would%20like%20to%20support%20your%20project."
+         style="text-decoration:none;">
+        <button>Contact us on WhatsApp</button>
+      </a>
+
+      <p>Contact us for instructions on sending your contribution.</p>
+    </div>
+
+    <div id="usdt" class="payment-panel">
+      <h3>Donate using USDT</h3>
+      <p>Network: TRON (TRC20)</p>
+
+      <div class="wallet" id="walletAddress">
+        TQwgmzgHDQ2QMVSYK6G9SVA5kQnoUC9AYT
+      </div>
+
+      <button onclick="copyWallet()">
+        Copy Wallet Address
+      </button>
+
+      <p id="copyMessage"></p>
+
+      <p>
+        Important: Send USDT only through
+        the TRON (TRC20) network.
+      </p>
+
+      <a href="https://tronscan.org/#/address/TQwgmzgHDQ2QMVSYK6G9SVA5kQnoUC9AYT"
+         target="_blank"
+         rel="noopener noreferrer">
+        View wallet on TRONSCAN
+      </a>
+    </div>
+  </div>
 
   <p>
+    Project enquiries:
+    <a href="mailto:Joshuasead8@gmail.com"
+       style="color:white;">
+      Joshuasead8@gmail.com
+    </a>
+  </p>
+
+  <script>
+    function showDonation(method) {
+      document.querySelectorAll(
+        '#donate .payment-panel'
+      ).forEach(function(panel) {
+        panel.classList.remove('active');
+      });
+
+      document.getElementById(method)
+        .classList.add('active');
+    }
+
+    function copyWallet() {
+      const address =
+        document.getElementById('walletAddress').innerText;
+
+      navigator.clipboard.writeText(address)
+        .then(function() {
+          document.getElementById('copyMessage')
+            .innerText = 'Wallet address copied!';
+        })
+        .catch(function() {
+          document.getElementById('copyMessage')
+            .innerText = 'Please select and copy the address manually.';
+        });
+    }
+  </script>
+</section>
     For enquiries:
     <a href="mailto:Joshuasead8@gmail.com">
       Joshuasead8@gmail.com
